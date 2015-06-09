@@ -42,7 +42,7 @@ object BatchLayer {
       session.execute(s"TRUNCATE batch_layer.spark_ml")
     }*/
 
-    //Get lines from the stream and store onto Cassandra
+    //Get lines from the stream and store onto an existing keyspace.table in Cassandra
     stream.map { case (_, v) => v }
       .map(x => (x, 1))
       .reduceByKey(_ + _)
